@@ -1,0 +1,8 @@
+{
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build --workspace=@flowboard/shared && npm run build --workspace=@flowboard/web",
+  "outputDirectory": "apps/web/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
