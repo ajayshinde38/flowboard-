@@ -1,0 +1,36 @@
+{
+  "name": "flowboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FlowBoard — Collaborative Project & Task Management Platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n API,WEB -c cyan,magenta \"npm run dev --workspace=@flowboard/api\" \"npm run dev --workspace=@flowboard/web\"",
+    "dev:api": "npm run dev --workspace=@flowboard/api",
+    "dev:web": "npm run dev --workspace=@flowboard/web",
+    "build": "npm run build --workspace=@flowboard/shared && npm run build --workspace=@flowboard/api && npm run build --workspace=@flowboard/web",
+    "typecheck": "npm run typecheck --workspace=@flowboard/shared && npm run typecheck --workspace=@flowboard/api && npm run typecheck --workspace=@flowboard/web",
+    "lint": "npm run lint --workspace=@flowboard/api && npm run lint --workspace=@flowboard/web",
+    "test": "npm run test --workspace=@flowboard/api && npm run test --workspace=@flowboard/web",
+    "test:api": "npm run test --workspace=@flowboard/api",
+    "test:web": "npm run test --workspace=@flowboard/web",
+    "test:e2e": "npm run test:e2e --workspace=@flowboard/web",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:generate": "npm run db:generate --workspace=@flowboard/api",
+    "db:migrate": "npm run db:migrate --workspace=@flowboard/api",
+    "db:push": "npm run db:push --workspace=@flowboard/api",
+    "db:seed": "npm run db:seed --workspace=@flowboard/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
